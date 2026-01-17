@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+/*
+  Daylight Terminal Design System
+  - Light & airy backgrounds with code/terminal aesthetics
+  - Monospace typography (JetBrains Mono) for headings
+  - IBM Plex Sans for body text
+  - Syntax highlighting colors as accents
+*/
+
+:root {
+  /* Base backgrounds */
+  --background: #FAFBFC;
+  --background-elevated: #FFFFFF;
+  --background-dark: #1E1E2E;
+  --background-terminal: #1A1B26;
+
+  /* Text colors */
+  --foreground: #1A1B26;
+  --foreground-muted: #565869;
+  --foreground-inverse: #FFFFFF;
+  --foreground-inverse-muted: #A9B1D6;
+
+  /* Borders */
+  --border: #E1E4E8;
+  --border-dark: #363B54;
+
+  /* Syntax highlighting / accent colors */
+  --syntax-teal: #73DACA;
+  --syntax-orange: #FF9E64;
+  --syntax-purple: #BB9AF7;
+  --syntax-green: #9ECE6A;
+  --syntax-red: #F7768E;
+  --syntax-blue: #7AA2F7;
+  --syntax-yellow: #E0AF68;
+  --syntax-cyan: #7DCFFF;
+
+  /* Traffic light colors */
+  --traffic-red: #FF5F56;
+  --traffic-yellow: #FFBD2E;
+  --traffic-green: #27C93F;
+
+  /* Terminal window styling */
+  --terminal-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  --terminal-border-radius: 12px;
+}
+
+@theme inline {
+  /* Map to Tailwind */
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-background-dark: var(--background-dark);
+  --color-background-terminal: var(--background-terminal);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-inverse: var(--foreground-inverse);
+  --color-foreground-inverse-muted: var(--foreground-inverse-muted);
+
+  --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
+
+  --color-syntax-teal: var(--syntax-teal);
+  --color-syntax-orange: var(--syntax-orange);
+  --color-syntax-purple: var(--syntax-purple);
+  --color-syntax-green: var(--syntax-green);
+  --color-syntax-red: var(--syntax-red);
+  --color-syntax-blue: var(--syntax-blue);
+  --color-syntax-yellow: var(--syntax-yellow);
+  --color-syntax-cyan: var(--syntax-cyan);
+
+  --color-traffic-red: var(--traffic-red);
+  --color-traffic-yellow: var(--traffic-yellow);
+  --color-traffic-green: var(--traffic-green);
+
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: var(--font-ibm-plex-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Base body styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-ibm-plex-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Monospace elements */
+h1, h2, h3, h4, h5, h6,
+.font-mono,
+code, pre, kbd {
+  font-family: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Typewriter animation */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(40) forwards;
+}
+
+/* Terminal glow effect on focus */
+@keyframes terminal-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(115, 218, 202, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(115, 218, 202, 0.2); }
+}
+
+.terminal-glow {
+  animation: terminal-glow 3s ease-in-out infinite;
+}
+
+/* Syntax highlighting classes */
+.syntax-keyword { color: var(--syntax-purple); }
+.syntax-string { color: var(--syntax-green); }
+.syntax-function { color: var(--syntax-blue); }
+.syntax-variable { color: var(--syntax-teal); }
+.syntax-number { color: var(--syntax-orange); }
+.syntax-comment { color: var(--foreground-muted); font-style: italic; }
+.syntax-operator { color: var(--syntax-cyan); }
+.syntax-error { color: var(--syntax-red); }
+
+/* Terminal window base styles */
+.terminal-window {
+  background: var(--background-elevated);
+  border-radius: var(--terminal-border-radius);
+  box-shadow: var(--terminal-shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.terminal-window-dark {
+  background: var(--background-terminal);
+  border-color: var(--border-dark);
+}
+
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal-window-dark .terminal-titlebar {
+  border-bottom-color: var(--border-dark);
+}
+
+.terminal-traffic-lights {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-traffic-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-traffic-light-red { background: var(--traffic-red); }
+.terminal-traffic-light-yellow { background: var(--traffic-yellow); }
+.terminal-traffic-light-green { background: var(--traffic-green); }
+
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  color: var(--foreground-muted);
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+.terminal-window-dark .terminal-title {
+  color: var(--foreground-inverse-muted);
+}
+
+.terminal-body {
+  padding: 20px;
+}
+
+/* Line numbers for code blocks */
+.line-number {
+  display: inline-block;
+  width: 3ch;
+  margin-right: 16px;
+  color: var(--foreground-muted);
+  text-align: right;
+  user-select: none;
+}
+
+/* Git diff styling */
+.diff-add {
+  color: var(--syntax-green);
+}
+
+.diff-add::before {
+  content: "+ ";
+  font-weight: bold;
+}
+
+.diff-remove {
+  color: var(--syntax-red);
+}
+
+.diff-remove::before {
+  content: "- ";
+  font-weight: bold;
+}
+
+/* Command prompt styling */
+.command-prompt {
+  color: var(--syntax-teal);
+  font-weight: 600;
+}
+
+.command-prompt::before {
+  content: "$ ";
+}
+
+/* Selection highlight */
+::selection {
+  background: rgba(122, 162, 247, 0.3);
+  color: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blink,
+  .animate-typewriter,
+  .terminal-glow {
+    animation: none;
+  }
+
+  .animate-blink {
+    opacity: 1;
+  }
+
+  .animate-typewriter {
+    width: 100%;
+  }
+}
+
+/* ASCII tree lines */
+.tree-line::before {
+  content: "├── ";
+  color: var(--foreground-muted);
+}
+
+.tree-line-last::before {
+  content: "└── ";
+  color: var(--foreground-muted);
+}
+
+/* Terminal input focus styles */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--syntax-teal);
+  box-shadow: 0 0 0 3px rgba(115, 218, 202, 0.1);
+}
+
+/* YAML key styling */
+.yaml-key {
+  color: var(--syntax-cyan);
+}
+
+.yaml-value {
+  color: var(--syntax-orange);
+}
