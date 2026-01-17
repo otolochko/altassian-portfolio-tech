@@ -29,6 +29,8 @@ npm run start    # Start production server
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
 
+![Alt](images/example.png)
+
 ## Deployment
 
 Deployed on [Vercel](https://vercel.com). Push to `main` branch triggers automatic deployment.
